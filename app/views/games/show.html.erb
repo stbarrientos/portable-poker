@@ -8,12 +8,20 @@
   <dd><%= @game.name %></dd>
 </dl>
 
+<ul>
+  <% @game.users.each do |user| %>
+  <li>
+    <p>
+      <%= user.username %>
+    </p>
+    <p>
+      <% user.cards.each do |card| %>
+        <%= card.value %> <%= card.suit %><br>
+      <% end %>
+    </p>
+  </li>
+  <% end %>
+</ul>
+
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              games_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_game_path(@game), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              game_path(@game),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+              root_path, :class => 'btn btn-default'  %>
